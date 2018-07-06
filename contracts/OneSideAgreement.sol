@@ -21,11 +21,11 @@ contract OneSideAgreement {
         _data = data;
     }
    
-    function GetNotar() constant public returns(address) {
+    function GetNotar() view public returns(address) {
         return _notar;
     }
 
-    function GetData() constant public returns(bytes32) {
+    function GetData() view public returns(bytes32) {
         return _data;
     }
 
