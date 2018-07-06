@@ -16,7 +16,7 @@ contract AgreementFactory {
     mapping (address => uint256) public agreementsCount;
    
     function CreateAgreement (address notar, bytes32 data, address[] benefitiars) external {
-        uint id = agreements.push(new OneSideAgreement(notar, data, benefitiars));
+        uint id = agreements.push(new OneSideAgreement(notar, data, benefitiars)) - 1;
         agreementIdToUser[id] = msg.sender;
         //agreemetnsCount[msg.sender]++;
         agreementsCount[msg.sender] = agreementsCount[msg.sender].add(1);
