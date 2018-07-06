@@ -8,9 +8,12 @@ contract OneSideAgreement {
     bool public isCertified;
     address private notar;
     bytes32 private data;
+
+    event Certified(address _notar, byte32 _data);
+    event Uncertified(address _notar, byte32 _data);
    
     modifier particularNotar() {
-        require(msg.sender == address(_notar));
+        require(msg.sender == address(notar));
         _;
     }
 
@@ -31,9 +34,11 @@ contract OneSideAgreement {
 
     function Certify () public particularNotar(){
         isCertified = true;
+        emit Certified(notar, data);
     }
    
     function UnCertify() public particularNotar(){
         isCertified = false;
+        emit Uncertified(notar, data);
     }
 }
