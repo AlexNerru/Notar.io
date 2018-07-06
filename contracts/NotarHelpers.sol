@@ -6,20 +6,24 @@ contract NotarHelpers is Ownable {
    
     struct Notar {
         address account;
+        bool exist;
     }
    
-    Notar[] notars;
+    mapping(address => Notar) notarAddressToId;
    
-    mapping(address => uint256) notarAddressToId;
-   
-    function AddNotar (address notar) onlyOwner public {
-        uint id = notars.push(Notar(notar));    
-        notarAddressToId[notar] = id;
+    function AddNotar (address _notarAddress) onlyOwner existNotar(_notarAddress) public {
+        notarAddressToId[_notarAddress] = Notar(_notarAddress, true);
     }
    
-    function DeleteNotar (address notar) onlyOwner public {
-        uint id = notarAddressToId[notar];
-        delete notars[id];
+    function DeleteNotar (address _notarAddress) onlyOwner existNotar(_notarAddress) public {
+        delete notarAddressToId[_notarAddress];
     }
+
+    modifier existNotar(address _notarAddress) {
+        require(notarAddressToId[_notarAddress].exist);
+        _;
+    }
+
+    
 }
  

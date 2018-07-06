@@ -1,6 +1,7 @@
 pragma solidity ^0.4.24;
 
 
+
 contract OneSideAgreement {
    
     address[] _benefitiars;
@@ -8,6 +9,11 @@ contract OneSideAgreement {
     address private _notar;
     bytes32 private _data;
    
+    modifier particularNotar() {
+        require(msg.sender == address(_notar));
+        _;
+    }
+
     constructor (address notar, bytes32 data, address[] benefitiars) public {
         _benefitiars = benefitiars;
         _isCertified = false;
@@ -15,13 +21,19 @@ contract OneSideAgreement {
         _data = data;
     }
    
-    function Certify () public{
-        require(address(_notar) == msg.sender);
+    function GetNotar() constant public returns(address) {
+        return _notar;
+    }
+
+    function GetData() constant public returns(bytes32) {
+        return _data;
+    }
+
+    function Certify () public particularNotar(){
         _isCertified = true;
     }
    
-    function UnCertify() public {
-        require(address(_notar) == msg.sender);
-        _isCertified = true;
+    function UnCertify() public particularNotar(){
+        _isCertified = false;
     }
 }
