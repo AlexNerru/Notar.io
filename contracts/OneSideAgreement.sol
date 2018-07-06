@@ -8,9 +8,12 @@ contract OneSideAgreement {
     bool public isCertified;
     address private notar;
     bytes32 private data;
+<<<<<<< HEAD
 
     event Certified(address _notar, byte32 _data);
     event Uncertified(address _notar, byte32 _data);
+=======
+>>>>>>> origin/Subbotin_Branch
    
     modifier particularNotar() {
         require(msg.sender == address(notar));
