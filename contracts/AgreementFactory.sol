@@ -2,23 +2,20 @@ pragma solidity ^0.4.24;
 
 import "contracts/OneSideAgreement.sol";
 import "./safemath.sol";
+import "contracts/NotarHelpers.sol";
 
-contract AgreementFactory {
+contract AgreementFactory is NotarHelpers {
 
     using SafeMath for uint256;
    
     OneSideAgreement[] agreements;
-   
-    //mapping(uint256 => OneSideAgreement) public oneSideAgreements;
-    
 
     mapping (uint256 => address) public agreementIdToUser;
     mapping (address => uint256) public agreementsCount;
    
-    function CreateAgreement (address notar, bytes32 data, address[] benefitiars) external {
+    function CreateAgreement (address notar, bytes32 data, address[] benefitiars) external existNotar(notar) {
         uint id = agreements.push(new OneSideAgreement(notar, data, benefitiars)) - 1;
         agreementIdToUser[id] = msg.sender;
-        //agreemetnsCount[msg.sender]++;
         agreementsCount[msg.sender] = agreementsCount[msg.sender].add(1);
     }
    
