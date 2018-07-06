@@ -10,6 +10,8 @@ contract AgreementFactory is NotarHelpers {
    
     OneSideAgreement[] agreements;
 
+    event AgreementCreated(address _notar, bytes32 _data, address[] _benefitiars);
+
     mapping (uint256 => address) public agreementIdToUser;
     mapping (address => uint256) public agreementsCount;
    
@@ -17,6 +19,8 @@ contract AgreementFactory is NotarHelpers {
         uint id = agreements.push(new OneSideAgreement(_notar, _data, _benefitiars)) - 1;
         agreementIdToUser[id] = msg.sender;
         agreementsCount[msg.sender] = agreementsCount[msg.sender].add(1);
+
+        emit AgreementCreated(_notar, _data, _benefitiars);
     }
    
     function GetUserAgreements(address _user) public view returns(address[]){
