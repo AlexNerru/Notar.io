@@ -10,6 +10,8 @@ contract OneSideAgreement {
     address private notar;
     // The document (hash/link)
     bytes32 private data;
+    // Client address
+    address client;
 
     // The agreement is certified (event)
     event Certified(address _notar, byte32 _data);
@@ -28,6 +30,7 @@ contract OneSideAgreement {
         isCertified = false;
         notar = _notar;
         data = _data;
+        client = msg.sender;
     }
     
     // Getting the agreement notary
@@ -38,6 +41,11 @@ contract OneSideAgreement {
     // Getting the agreement data
     function GetData() view public returns(bytes32) {
         return data;
+    }
+
+    // Getting the client
+    function GetClient view public returns (address){
+        return client;
     }
 
     // Certifying the agreement (notary only)
