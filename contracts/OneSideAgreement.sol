@@ -16,9 +16,9 @@ contract OneSideAgreement is NotarHelpers {
     address client;
 
     // The agreement is certified (event)
-    event Certified(address _notar, byte32 _data);
+    event Certified(address _notar, bytes32 _data);
     // The agreement is uncertified (event)
-    event Uncertified(address _notar, byte32 _data);
+    event Uncertified(address _notar, bytes32 _data);
     
     // Modifier to limit access (meaning notary only)
     modifier particularNotar() {
