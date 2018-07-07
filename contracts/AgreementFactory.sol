@@ -18,6 +18,7 @@ contract AgreementFactory is NotarHelpers {
     // to the person with this address
     mapping (address => uint[]) public addressToId;
 
+    // Create agreement function (if the notary exists)
     function CreateAgreement (address _notar, bytes32 _data, address[] _benefitiars) external existNotar(_notar) {
 
         // Creating the agreement
@@ -33,6 +34,7 @@ contract AgreementFactory is NotarHelpers {
         emit AgreementCreated(_notar, _data, _benefitiars);
     }
 
+    // Get all the agreements of a person (either client's or notary's)
     function GetAgreements(address person) public view returns (OneSideAgreement[]){
         
         // All the agreements' ids in the agreement array that belong to the client/notary
