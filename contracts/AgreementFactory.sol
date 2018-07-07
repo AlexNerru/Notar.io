@@ -33,9 +33,9 @@ contract AgreementFactory is NotarHelpers {
         emit AgreementCreated(_notar, _data, _benefitiars);
     }
 
-    function GetContracts(address person) public view returns (OneSideAgreement[]){
+    function GetAgreements(address person) public view returns (OneSideAgreement[]){
         
-        // All the contracts' ids in the agreement array that belong to the client/notary
+        // All the agreements' ids in the agreement array that belong to the client/notary
         uint[] storage ids = addressToId[person];
 
         // Array of that agreements
