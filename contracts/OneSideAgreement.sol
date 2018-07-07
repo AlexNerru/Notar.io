@@ -1,6 +1,6 @@
 pragma solidity ^0.4.24;
 
-import "contracts/NotarHelpers.sol";
+import "./NotarHelpers.sol";
 
 contract OneSideAgreement is NotarHelpers {
     
@@ -46,18 +46,18 @@ contract OneSideAgreement is NotarHelpers {
     }
 
     // Getting the client
-    function GetClient view public returns (address){
+    function GetClient() view public returns (address){
         return client;
     }
 
     // Certifying the agreement (notary only)
-    function Certify () public particularNotar(), existNotar(notar){
+    function Certify () public particularNotar() existNotar(notar){
         isCertified = true;
         emit Certified(notar, data);
     }
     
     // Uncertifying the agreement (notary only)
-    function UnCertify() public particularNotar(), existNotar(notar){
+    function UnCertify() public particularNotar() existNotar(notar){
         isCertified = false;
         emit Uncertified(notar, data);
     }
