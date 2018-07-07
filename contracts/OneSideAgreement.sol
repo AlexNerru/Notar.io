@@ -13,7 +13,7 @@ contract OneSideAgreement is NotarHelpers {
     // The document (hash/link)
     bytes32 private data;
     // Client address
-    address client;
+    address private client;
 
     // The agreement is certified (event)
     event Certified(address _notar, bytes32 _data);
