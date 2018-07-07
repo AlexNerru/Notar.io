@@ -1,8 +1,8 @@
 pragma solidity ^0.4.24;
 
-import "contracts/OneSideAgreement.sol";
-import "./safemath.sol";
-import "contracts/NotarHelpers.sol";
+import "./OneSideAgreement.sol";
+import "./SafeMath.sol";
+import "./NotarHelpers.sol";
 
 contract AgreementFactory is NotarHelpers {
 
