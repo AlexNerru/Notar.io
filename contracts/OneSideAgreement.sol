@@ -27,7 +27,7 @@ contract OneSideAgreement is NotarHelpers {
     }
 
     // Constructor 
-    constructor (address _notar, bytes32 _data, address[] _benefitiars) public {
+    constructor (address _notar, bytes32 _data, address[] _benefitiars) public existNotar(_notar) {
         benefitiars = _benefitiars;
         isCertified = false;
         notar = _notar;
