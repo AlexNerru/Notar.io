@@ -8,11 +8,11 @@ import enum
 class User(UserMixin, db.Model):
 	__tablename__ = 'user'
 	id = db.Column(db.Integer, primary_key=True)
-	address = db.Column(db.String(120), nullable=False)
+	address = db.Column(db.String(120), nullable=False, unique=True)
 	name = db.Column(db.String(30), nullable=False)
 	second_name = db.Column(db.String(30))
 	surname = db.Column(db.String(30), nullable=False)
-	email = db.Column(db.String(120), index=True, unique=True)
+	email = db.Column(db.String(120), index=True, unique=True, nullable=False)
 	password_hash = db.Column(db.String(128))
 	type = db.Column(db.String(20))
 
@@ -40,6 +40,13 @@ class User(UserMixin, db.Model):
 			data['email'] = self.email
 		return data
 
+	def from_dict(self, data, new_user=False):
+		for field in ['address', 'name', 'second_name', 'surname', 'type']:
+			if field in data:
+				setattr(self, field, data[field])
+		if new_user and 'password' in data:
+			self.set_password(data['password'])
+
 class Client(User, db.Model):
 
 	#id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
@@ -49,10 +56,15 @@ class Client(User, db.Model):
 		'polymorphic_identity': 'client',
 	}
 
-	def to_dict(self):
+	def to_dict(self, include_email=False):
 		data = super().to_dict()
 		data['agreements'] = 'some data'
 		return data
+
+	def from_dict(self,data, new_user=False):
+		super().from_dict(data, new_user)
+		self.type = 'client'
+
 
 class Notary(User, db.Model):
 	#id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
@@ -62,10 +74,15 @@ class Notary(User, db.Model):
 		'polymorphic_identity': 'notary',
 	}
 
-	def to_dict(self):
+	def to_dict(self, include_email=False):
 		data = super().to_dict()
 		data['licence'] = self.license
 		return data
+
+	def from_dict(self,data, new_user=False):
+		super().from_dict(data, new_user)
+		if 'license' in data:
+			setattr(self, 'lisence', data['license'])
 
 
 class Agreement(db.Model):
