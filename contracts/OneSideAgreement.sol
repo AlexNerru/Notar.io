@@ -14,6 +14,8 @@ contract OneSideAgreement is NotarHelpers {
     bytes32 private data;
     // Client address
     address private client;
+    // The agreement is being considered
+    bool private inProgress = true;
 
     // The agreement is certified (event)
     event Certified(address _notar, bytes32 _data);
@@ -52,13 +54,17 @@ contract OneSideAgreement is NotarHelpers {
 
     // Certifying the agreement (notary only)
     function Certify () public particularNotar() existNotar(notar){
+        require(inProgress);
         isCertified = true;
+        inProgress = false;
         emit Certified(notar, data);
     }
     
     // Uncertifying the agreement (notary only)
     function UnCertify() public particularNotar() existNotar(notar){
+        require(inProgress);
         isCertified = false;
+        inProgress = false;
         emit Uncertified(notar, data);
     }
 }
