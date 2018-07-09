@@ -20,7 +20,7 @@ contract OneSideAgreement is NotarHelpers {
     // The agreement is certified (event)
     event Certified(address _notar, bytes32 _data);
     // The agreement is uncertified (event)
-    event Uncertified(address _notar, bytes32 _data);
+    event Denied(address _notar, bytes32 _data);
     
     // Modifier to limit access (meaning notary only)
     modifier particularNotar() {
@@ -60,11 +60,11 @@ contract OneSideAgreement is NotarHelpers {
         emit Certified(notar, data);
     }
     
-    // Uncertifying the agreement (notary only)
-    function UnCertify() public particularNotar() existNotar(notar){
+    // Deny the agreement (notary only)
+    function Deny() public particularNotar() existNotar(notar){
         require(inProgress);
         isCertified = false;
         inProgress = false;
-        emit Uncertified(notar, data);
+        emit Denied(notar, data);
     }
 }
