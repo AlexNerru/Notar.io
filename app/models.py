@@ -22,10 +22,10 @@ class User(UserMixin, db.Model):
 	}
 
 	def set_password(self, password):
-		self.password_hash = generate_password_hash(password)
+		self.password_hash = password
 
 	def check_password(self, password):
-		return check_password_hash(self.password_hash, password)
+		return self.password_hash == password
 
 	def to_dict(self, include_email=False):
 		data = {
@@ -34,7 +34,6 @@ class User(UserMixin, db.Model):
 			'name' : self.name,
 			'second_name': self.second_name,
 			'surname': self.second_name,
-			'type': self.type,
 		}
 		if include_email:
 			data['email'] = self.email
@@ -68,7 +67,7 @@ class Client(User, db.Model):
 
 class Notary(User, db.Model):
 	#id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
-	license = db.Column(db.String(50), nullable=False)
+	license = db.Column(db.String(50))
 
 	__mapper_args__ = {
 		'polymorphic_identity': 'notary',
@@ -82,7 +81,7 @@ class Notary(User, db.Model):
 	def from_dict(self,data, new_user=False):
 		super().from_dict(data, new_user)
 		if 'license' in data:
-			setattr(self, 'lisence', data['license'])
+			setattr(self, 'licence', data['license'])
 
 
 class Agreement(db.Model):
