@@ -18,7 +18,7 @@ contract NotarHelpers is Ownable {
     event NotarAdded(address _notar);
     
     // Mapping with indexes-addresses that stores Notar objects
-    mapping(address => Notar) notarAddressToId;
+    mapping(address => Notar) public  notarAddressToId;
     
     // Add notary to the mapping function
     function AddNotar (address _notarAddress) onlyOwner public {
@@ -41,8 +41,6 @@ contract NotarHelpers is Ownable {
     modifier existNotar(address _notarAddress) {
         require(notarAddressToId[_notarAddress].exist);
         _;
-    }
-
-    
+    } 
 }
  
