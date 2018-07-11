@@ -29,7 +29,7 @@ contract NotarHelpers is Ownable {
     // Delete notary from the mapping function (if it exists)
     function DeleteNotar (address _notarAddress) onlyOwner existNotar(_notarAddress) public {
         //delete notarAddressToId[_notarAddress];
-        otarAddressToId[_notarAddress] = Notar(0, false);
+        notarAddressToId[_notarAddress] = Notar(0, false);
         emit NotarDeleted(_notarAddress);
     }
 
