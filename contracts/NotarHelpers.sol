@@ -1,6 +1,6 @@
 pragma solidity ^0.4.24;
  
-import "../node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol";
+import "./Ownable.sol";
  
 contract NotarHelpers is Ownable {
    
@@ -20,8 +20,8 @@ contract NotarHelpers is Ownable {
     // Mapping with indexes-addresses that stores Notar objects
     mapping(address => Notar) notarAddressToId;
     
-    // Add notary to the mapping function (if it exists)
-    function AddNotar (address _notarAddress) onlyOwner existNotar(_notarAddress) public {
+    // Add notary to the mapping function
+    function AddNotar (address _notarAddress) onlyOwner public {
         notarAddressToId[_notarAddress] = Notar(_notarAddress, true);
         emit NotarAdded(_notarAddress);
     }

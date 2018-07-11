@@ -1,6 +1,8 @@
 pragma solidity ^0.4.24;
 
-contract OneSideAgreement {
+import "./NotarHelpers.sol";
+
+contract OneSideAgreement is NotarHelpers {
     
     // Stakeholders (heirs) addresses
     address[] benefitiars;
@@ -11,12 +13,14 @@ contract OneSideAgreement {
     // The document (hash/link)
     bytes32 private data;
     // Client address
-    address client;
+    address private client;
+    // The agreement is being considered
+    bool private inProgress = true;
 
     // The agreement is certified (event)
-    event Certified(address _notar, byte32 _data);
+    event Certified(address _notar, bytes32 _data);
     // The agreement is uncertified (event)
-    event Uncertified(address _notar, byte32 _data);
+    event Denied(address _notar, bytes32 _data);
     
     // Modifier to limit access (meaning notary only)
     modifier particularNotar() {
@@ -25,7 +29,7 @@ contract OneSideAgreement {
     }
 
     // Constructor 
-    constructor (address _notar, bytes32 _data, address[] _benefitiars) public {
+    constructor (address _notar, bytes32 _data, address[] _benefitiars) public existNotar(_notar) {
         benefitiars = _benefitiars;
         isCertified = false;
         notar = _notar;
@@ -44,19 +48,23 @@ contract OneSideAgreement {
     }
 
     // Getting the client
-    function GetClient view public returns (address){
+    function GetClient() view public returns (address){
         return client;
     }
 
     // Certifying the agreement (notary only)
-    function Certify () public particularNotar(){
+    function Certify () public particularNotar() existNotar(notar){
+        require(inProgress);
         isCertified = true;
+        inProgress = false;
         emit Certified(notar, data);
     }
     
-    // Uncertifying the agreement (notary only)
-    function UnCertify() public particularNotar(){
+    // Deny the agreement (notary only)
+    function Deny() public particularNotar() existNotar(notar){
+        require(inProgress);
         isCertified = false;
-        emit Uncertified(notar, data);
+        inProgress = false;
+        emit Denied(notar, data);
     }
 }
