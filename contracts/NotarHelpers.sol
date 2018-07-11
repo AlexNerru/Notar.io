@@ -32,6 +32,11 @@ contract NotarHelpers is Ownable {
         emit NotarDeleted(_notarAddress);
     }
 
+    // Check if msg.sender is a notary
+    function AmINotar() public view returns (bool) {
+        return notarAddressToId[msg.sender].exist;
+    }
+
     // Modifier to check whether a notary exists or not
     modifier existNotar(address _notarAddress) {
         require(notarAddressToId[_notarAddress].exist);
