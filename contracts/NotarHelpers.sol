@@ -38,6 +38,11 @@ contract NotarHelpers is Ownable {
         return notarAddressToId[msg.sender].exist;
     }
 
+    // Checking notary status
+    function GetNotarStatus(address _address) external view returns(bool){
+        return notarAddressToId[_address].exist;
+    }
+
     // Modifier to check whether a notary exists or not
     modifier existNotar(address _notarAddress) {
         require(notarAddressToId[_notarAddress].exist);
