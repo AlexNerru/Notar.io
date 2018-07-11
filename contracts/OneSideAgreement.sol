@@ -67,4 +67,17 @@ contract OneSideAgreement is NotarHelpers {
         inProgress = false;
         emit Denied(notar, data);
     }
+
+    // Checking agreement status
+    function CheckStatus() public view returns (string){
+        if(inProgress){
+            return "In progress";
+        }
+        
+        if(isCertified){
+            return "Certified";
+        }
+
+        return "Denied";
+    }
 }
