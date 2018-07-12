@@ -27,7 +27,7 @@ contract OneSideAgreement {
     modifier particularNotar() {
         /*require(msg.sender == address(notar));
         _;*/
-        if(msg.sender == address(notar)){
+        if(msg.sender == notar){
             _;
         }
     }
@@ -55,6 +55,10 @@ contract OneSideAgreement {
     // Getting the client
     function GetClient() view public returns (address){
         return client;
+    }
+
+    function GetBenefitiars() view public returns(address[]){
+        return benefitiars;
     }
 
     // Certifying the agreement (notary only)
