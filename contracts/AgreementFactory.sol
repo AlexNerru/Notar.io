@@ -5,6 +5,7 @@ import "./SafeMath.sol";
 import "./NotarHelpers.sol";
 
 contract AgreementFactory {
+    
     using SafeMath for uint256;
     
     NotarHelpers private nh;
@@ -24,7 +25,7 @@ contract AgreementFactory {
     }
 
     // Create agreement function (if the notary exists)
-    function CreateAgreement (address _notar, bytes32 _data, address[] _benefitiars) external returns(address) {
+    function CreateAgreement (address _notar, bytes32 _data, address[] _benefitiars) external returns(bool) {
         bool flag = nh.GetNotarStatus(_notar);
         if (flag) {
             // Creating the agreement
@@ -39,9 +40,9 @@ contract AgreementFactory {
     
             emit AgreementCreated(_notar, _data, _benefitiars);
             
-            return agreement;
+            return true;
         } else {
-            return _notar;
+            return false;
         }
     }
 
