@@ -37,7 +37,7 @@ contract OneSideAgreement {
         //isCertified;
         notar = _notar;
         data = _data;
-        client = msg.sender;
+        client = tx.origin;
         inProgress = true;
         benefitiars = _benefitiars;
     }
