@@ -39,7 +39,7 @@ contract AgreementFactory {
     
             emit AgreementCreated(_notar, _data, _benefitiars);
             
-            return address(agreement);
+            return agreement;
         } else {
             return _notar;
         }
