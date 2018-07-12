@@ -47,13 +47,13 @@ contract AgreementFactory {
     }
 
     // Get all the agreements of a person (either client's or notary's)
-    function GetAgreements(address person) public view returns (OneSideAgreement[]){
+    function GetAgreements(address person) public view returns (address[]){
         
         // All the agreements' ids in the agreement array that belong to the client/notary
         uint[] storage ids = addressToId[person];
 
         // Array of that agreements
-        OneSideAgreement[] memory agr = new OneSideAgreement[](ids.length);
+        address[] memory agr = new address[](ids.length);
 
         uint counter = 0;
 
