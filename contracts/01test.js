@@ -167,6 +167,18 @@ contract("Test the contracts", function(accounts){
                 expect(res.toString()).to.be.equal("In progress");
             })
         })
+
+        it("Get benefitiars", function(){
+            return oneSideAgreementContract.GetBenefitiars().then(function(res){
+                expect(res).not.to.be.an("error");
+            })
+        })
+
+        it("2 benefitiars", function(){
+            return oneSideAgreementContract.GetBenefitiars().then(function(res){
+                expect(res.length).to.be.equal(2);
+            })
+        })
     })
 
     describe("Check notary functions (certify)", function(){
