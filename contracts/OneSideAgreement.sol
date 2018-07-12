@@ -57,6 +57,7 @@ contract OneSideAgreement {
         return client;
     }
 
+    // Get the benefitiars
     function GetBenefitiars() view public returns(address[]){
         return benefitiars;
     }
