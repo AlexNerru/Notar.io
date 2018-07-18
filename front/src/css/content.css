@@ -1,0 +1,9 @@
+.list {
+    margin : 10px;
+    -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; /* Firefox */
+    column-count: 1;
+    -webkit-column-width: 100%; /* Chrome, Safari, Opera */
+    -moz-column-width: 100%; /* Firefox */
+    column-width: 100%;
+}

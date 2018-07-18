@@ -1,0 +1,45 @@
+.card { 
+    margin : 0px 0px 2% 0px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 90%;
+    border-radius: 5px;
+}
+
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+    padding: 2px 2px;
+}
+
+
+.container button {
+    color: white;
+    padding: 5px 5px;
+    margin: 4px 0;
+    background-color: #1abc9c;
+    cursor: pointer;
+    width: 100%;
+    outline: none;
+    opacity: 0.9;
+    border-radius:5px;
+}
+
+.container button:hover {
+    opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.container .cancelbtn {
+    padding: 5px 5px;
+    background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.container .cancelbtn,.sign-up .signupbtn {
+  float: left;
+  width: 100%;
+}

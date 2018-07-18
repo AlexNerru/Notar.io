@@ -1,0 +1,99 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #394944;
+}
+
+li {
+    float: left;
+}
+
+li a, .dropbtn {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dropbtn:hover .dropbtn {
+    background-color: #111;
+}
+
+li.dropdown {
+    display: inline-block;
+    float : right;
+    margin-right : 5px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+ul .search-container {
+    float: right;
+    margin-top: 12.5px;
+    margin-right: 10px;
+    width: 22%;
+}
+
+ul input[type=text] {
+    border: none;
+    outline: none;
+    font-size: 17px;
+    width:80%;
+}
+
+ul button {
+    width:20%;
+    float: right;
+    font-size: 17px;
+    text-align:center;
+    color: white;
+    background: none;
+    border:none;  
+    cursor: pointer;
+    display:block;
+    padding : 2px 2px;
+    outline:none;
+    text-decoration: none;
+}
+  
+ul button:hover {
+    background: #111;
+}
+
+.content {
+    padding: 16px;
+  }
+  
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  
+  .sticky + .content {
+    padding-top: 60px;
+  }

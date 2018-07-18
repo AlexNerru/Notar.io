@@ -20,4 +20,4 @@ handler = RotatingFileHandler('app.log', maxBytes=10000, backupCount=3)
 logger.addHandler(handler)
 #login.login_view = 'login'
 
-from app import routes, models
+from app import routes, models, tokens

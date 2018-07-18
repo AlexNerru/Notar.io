@@ -1,0 +1,53 @@
+/* Full-width input fields */
+.sign-up input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+.sign-up input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+.sign-up button {
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    background-color: #1abc9c;
+    cursor: pointer;
+    width: 100%;
+    outline: none;
+    opacity: 0.9;
+    border-radius:5px;
+}
+
+.sign-up button:hover {
+    opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.sign-up .cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+
+/* Float cancel and signup buttons and add an equal width */
+.sign-up .cancelbtn,.sign-up .signupbtn {
+  float: left;
+  width: 100%;
+}
+
+.sign-up .container {
+    padding : 50px;
+}
+
+.sign-up .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}

@@ -1,0 +1,126 @@
+{
+    "abi":
+    [
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "agreements",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "person",
+                    "type": "address"
+                }
+            ],
+            "name": "GetAgreements",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address[]"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "",
+                    "type": "address"
+                },
+                {
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "addressToId",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "_notar",
+                    "type": "address"
+                },
+                {
+                    "name": "_data",
+                    "type": "bytes32"
+                },
+                {
+                    "name": "_benefitiars",
+                    "type": "address[]"
+                }
+            ],
+            "name": "CreateAgreement",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "name": "_nh",
+                    "type": "address"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "name": "_notar",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "name": "_data",
+                    "type": "bytes32"
+                },
+                {
+                    "indexed": false,
+                    "name": "_benefitiars",
+                    "type": "address[]"
+                }
+            ],
+            "name": "AgreementCreated",
+            "type": "event"
+        }
+    ]
+}
